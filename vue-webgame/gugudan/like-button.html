@@ -4,18 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>like</title>
-    <script src="https://cdn.jsdeliver.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
 
   <body>
     <div id="root">
-      <div>Like clicked</div>
-      <button>Like</button>
+      <div v-if="liked">Like clicked</div>
+      <button v-else v-on:click="onClickButton">Like</button>
     </div>
   </body>
   <script>
     const app = new Vue({
-      el: "#root",
+      el: " #root ",
       data: {
         liked: false,
       },
