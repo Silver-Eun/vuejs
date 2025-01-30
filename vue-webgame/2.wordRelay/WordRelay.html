@@ -10,36 +10,41 @@
 </head>
 <body>
 <div id="root">
-    <WordRelay></WordRelay>
-    <WordRelay></WordRelay>
-    <WordRelay></WordRelay>
+    <word-relay></word-relay>
+    <word-relay></word-relay>
+    <word-relay></word-relay>
 </div>
 <script>
-    Vue.component('WordRelay', {
+    Vue.component('word-relay', {
         template: `
-          <div>{{ word }}</div>
-          <form v-on:submit="OnSubmitForm">
-            <input type="text" v-model="value" ref="answer"/>
-            <button type="submit">입력</button>
-          </form>
-          <div id="result">{{ result }}</div>
+          <div>
+            <div>{{ word }}</div>
+            <form v-on:submit="OnSubmitForm">
+              <input type="text" v-model="value" ref="answer"/>
+              <button type="submit">입력</button>
+            </form>
+            <div id="result">{{ result }}</div>
+          </div>
         `,
-        data: {
-            word: "제로초",
-            result: "",
-            value: ""
+        data() {
+            return {
+                word: '제로초',
+                result: '',
+                value: ''
+            }
         },
         methods: {
             OnSubmitForm(e) {
                 e.preventDefault();
                 if (this.word[this.word.length - 1] === this.value[0]) {
-                    this.result = "딩동댕";
+                    this.result = '딩동댕';
                     this.word = this.value;
-                    this.value = "";
+                    this.value = '';
                     this.$refs.answer.focus();
                 } else {
-                    this.result = "땡";
-                    this.value = "";
+                    this.result = '땡';
+                    this.value = '';
+                    this.$refs.answer.focus();
                 }
             }
         }
