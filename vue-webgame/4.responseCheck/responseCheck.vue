@@ -4,13 +4,16 @@
          @click="onClickScreen">{{ message }}
     </div>
     <div>
-      <div>Avg Time: {{}}</div>
+      <div>Avg Time: {{ result.reduce((a, c) => a + c, 0) / result.length || 0 }}ms</div>
       <button @click="onReset">Reset</button>
     </div>
   </div>
 </template>
 
 <script>
+let startTime = 0;
+let endTime = 0;
+let timeout = null;
 export default {
   data() {
     return {
@@ -21,15 +24,26 @@ export default {
   },
   methods: {
     onReset() {
-
+      this.result = [];
     },
     onClickScreen() {
       if (this.state === 'waiting') {
         this.state = 'ready';
+        this.message = 'click when green'
+        timeout = setTimeout(() => {
+          this.state = 'now';
+          this.message = 'click now!'
+          startTime = new Date();
+        }, Math.floor(Math.random() * 1000) + 2000);
       } else if (this.state === 'ready') {
+        clearTimeout(timeout);
         this.state = 'now';
+        this.message = 'too fast, click when green'
       } else if (this.state === 'now') {
+        endTime = new Date();
         this.state = 'waiting';
+        this.message = 'click to start'
+        this.result.push(endTime - startTime);
       }
     }
   }
