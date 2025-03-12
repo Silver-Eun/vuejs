@@ -3,10 +3,10 @@
     <div id="screen" v-bind:class="state"
          @click="onClickScreen">{{ message }}
     </div>
-    <div>
-      <div>Avg Time: {{ result.reduce((a, c) => a + c, 0) / result.length || 0 }}ms</div>
+    <template v-if="result.length">
+      <div>Avg Time: {{ average }}ms</div>
       <button @click="onReset">Reset</button>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -20,6 +20,11 @@ export default {
       result: [],
       state: 'waiting',
       message: 'click to start'
+    }
+  },
+  computed: {
+    average() {
+      return this.result.reduce((a, c) => a + c, 0) / this.result.length || 0;
     }
   },
   methods: {
