@@ -18,6 +18,7 @@ const rspCoords = {
   paper: '-284px',
 }
 
+let interval = null;
 export default {
   data() {
     return {
@@ -36,7 +37,39 @@ export default {
   methods: {
     onClickButton(choice) {
 
-    }
+  },
+  beforeCreate() {
+    console.log('beforeCreate');
+  },
+  created() {
+    console.log('created');
+  },
+  beforeMount() {
+    console.log('mounted');
+  },
+  mounted() {
+    interval = setInterval(() => {
+      if (this.imgCoord === rspCoords.rock) {
+        this.imgCoord = rspCoords.scissors;
+      } else if (this.imgCoord === rspCoords.scissors) {
+        this.imgCoord = rspCoords.paper;
+      } else if (this.imgCoord === rspCoords.paper) {
+        this.imgCoord = rspCoords.rock;
+      }
+    }, 100);
+  },
+  beforeUpdate() {
+    console.log('beforeUpdate');
+  },
+  updated() {
+    console.log('updated');
+  },
+  beforeDestroy() {
+    console.log('beforeDestroy');
+    clearInterval(interval);
+  },
+  destroyed() {
+    console.log('destroyed');
   }
 }
 </script>
