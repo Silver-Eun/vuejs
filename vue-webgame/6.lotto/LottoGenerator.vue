@@ -64,7 +64,13 @@ export default {
       clearTimeout(t);
     });
   },
-  watch: {}
+  watch: {
+    winBalls(value, oldValue) {
+      if (value.length === 0) {
+        this.showBalls();
+      }
+    }
+  }
 }
 </script>
 
