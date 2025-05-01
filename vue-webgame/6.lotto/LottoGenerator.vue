@@ -9,7 +9,6 @@
     <button v-if="redo" @click="onClickRedo">한 번 더</button>
   </div>
 </template>
-
 <script>
 import LottoBall from "./LottoBall.vue";
 
