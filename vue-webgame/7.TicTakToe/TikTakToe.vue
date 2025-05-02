@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import Vue from "vue";
 import TableComponent from "./TableComponent.vue";
 
 export default {
@@ -22,7 +23,11 @@ export default {
       turn: 'O'
     }
   },
-  methods: {}
+  methods: {
+    onChangeData() {
+      Vue.set(this.tableData[1], 0, 'X');
+    }
+  }
 }
 </script>
 
@@ -36,5 +41,6 @@ td {
   width: 100px;
   height: 100px;
   text-align: center;
+  line-height: 100px;
 }
 </style>

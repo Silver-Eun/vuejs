@@ -11,7 +11,9 @@ export default {
   },
   methods: {
     onClickTd() {
-      this.$root.$data.turn = this.$root.$data.turn === 'O' ? 'X' : 'O';
+      let rootData = this.$root.$data;
+      this.$set(rootData.tableData[this.rowIndex], this.cellIndex, rootData.turn);
+      rootData.turn = rootData.turn === 'O' ? 'X' : 'O';
     }
   }
 }
