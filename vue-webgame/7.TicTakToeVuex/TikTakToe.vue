@@ -1,15 +1,17 @@
 <template>
   <div>
     <div>{{ turn }}'s turn</div>
-    <table-component :table-data="tableData"></table-component>
+    <table-component></table-component>
     <div v-if="winner">{{ winner }} is winner</div>
   </div>
 </template>
 
 <script>
+import store from './store';
 import TableComponent from "./TableComponent.vue";
 
 export default {
+  store,
   components: {
     TableComponent
   },
