@@ -25,7 +25,7 @@ export default new Vuex.Store({
         }
     }, // vue의 computed와 비슷
     mutations: {
-        [SET_WINNER](state) {
+        [SET_WINNER](state, winner) {
             state.winner = winner;
         },
         [CLICK_CELL](state, {row, cell}) {
