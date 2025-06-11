@@ -50,13 +50,14 @@ const plantMine = (row, cell, mine) => {
 export default new Vuex.Store({
     state: {
         tableData: [],
-        timer: 0,
-        result: '',
         data: {
             row: 0,
             cell: 0,
             mine: 0
-        }
+        },
+        timer: 0,
+        halted: true, // 중단됨
+        result: '',
     }, // vue의 data와 비슷
     getters: {}, // vue의 computed와 비슷
     mutations: {
@@ -68,6 +69,7 @@ export default new Vuex.Store({
             }
             state.tableData = plantMine(row, cell, mine);
             state.timer = 0;
+            state.halted = false;
         },
         [OPEN_CELL](state) {
         },
@@ -80,6 +82,7 @@ export default new Vuex.Store({
         [NORMALIZE_CELL](state) {
         },
         [INCREMENT_TIMER](state) {
+            state.timer += 1;
         },
     }, // state를 수정할 때 사용, 동기적으로
 })
