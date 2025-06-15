@@ -58,11 +58,12 @@ export default new Vuex.Store({
         timer: 0,
         halted: true, // 중단됨
         result: '',
+        openedCount: 0,
     }, // vue의 data와 비슷
     getters: {}, // vue의 computed와 비슷
     mutations: {
         [START_GAME](state, {row, cell, mine}) {
-            state.date = {
+            state.data = {
                 row,
                 cell,
                 mine
@@ -70,8 +71,11 @@ export default new Vuex.Store({
             state.tableData = plantMine(row, cell, mine);
             state.timer = 0;
             state.halted = false;
+            state.openedCount = 0;
+            state.result = '';
         },
         [OPEN_CELL](state, {row, cell}) {
+            let openedCount = 0;
             const checked = [];
 
             function checkAround(row, cell) { // 주변 8칸 지뢰여부 검사
@@ -129,10 +133,22 @@ export default new Vuex.Store({
                         }
                     });
                 }
+                if (state.tableData[row][cell] === CODE.NORMAL) {
+                    openedCount += 1;
+                }
                 Vue.set(state.tableData[row], cell, counted.length);
             }
 
             checkAround(row, cell);
+            let halted = false;
+            let result = '';
+            if ((state.data.row * state.data.cell - state.data.mine) === state.openedCount + openedCount) {
+                halted = true;
+                result = `win in ${state.timer} second`;
+            }
+            state.openedCount += openedCount;
+            state.halted = halted;
+            state.result = result;
         },
         [CLICK_MINE](state, {row, cell}) {
             state.halted = true;
