@@ -1,10 +1,17 @@
 <template>
   <div>
+    <div>
+      <router-link to="/numberBaseball">numberBaseball</router-link>
+      <router-link to="/responseCheck">responseCheck</router-link>
+      <router-link to="/rockScissorsPaper">rockScissorsPaper</router-link>
+      <router-link to="/lottoGenerator">lottoGenerator</router-link>
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import router from './routes.js'
+import router from './routes'
 
 export default {
   router,

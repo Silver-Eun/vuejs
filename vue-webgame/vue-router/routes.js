@@ -8,6 +8,7 @@ import LottoGenerator from "../6.lotto/LottoGenerator"
 Vue.use(VueRouter);
 
 export default new VueRouter({
+    mode: "history",
     routes: [
         {path: '/numberBaseball', component: NumberBaseball},
         {path: '/responseCheck', component: ResponseCheck},
