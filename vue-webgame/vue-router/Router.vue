@@ -1,10 +1,11 @@
 <template>
   <div>
     <div>
-      <router-link to="/numberBaseball">numberBaseball</router-link>
-      <router-link to="/responseCheck">responseCheck</router-link>
-      <router-link to="/rockScissorsPaper">rockScissorsPaper</router-link>
-      <router-link to="/lottoGenerator">lottoGenerator</router-link>
+      <router-link to="/game/index">gameMatcher</router-link>
+      <router-link to="/game/numberBaseball">numberBaseball</router-link>
+      <router-link to="/game/responseCheck">responseCheck</router-link>
+      <router-link to="/game/rockScissorsPaper">rockScissorsPaper</router-link>
+      <router-link to="/game/lottoGenerator">lottoGenerator</router-link>
     </div>
     <router-view></router-view>
   </div>
